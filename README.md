@@ -1,5 +1,5 @@
 # 🎵 DAWProject-Py  
-*A Python library for working with DAWProject files — enabling DAW interoperability.*
+*Python code for working with DAWProject files — enabling DAW interoperability.*
 
 [![License](https://img.shields.io/github/license/roex-audio/dawproject-py)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/roex-audio/dawproject-py.svg)](https://github.com/roex-audio/dawproject-py/stargazers)
