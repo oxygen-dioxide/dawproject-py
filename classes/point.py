@@ -3,8 +3,6 @@ from lxml import etree as ET
 from classes.doubleAdapter import DoubleAdapter
 
 
-
-
 class Point(ABC):
     def __init__(self, time=None):
         self.time = time

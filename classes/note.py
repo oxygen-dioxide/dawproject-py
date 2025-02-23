@@ -4,7 +4,16 @@ from classes.timeline import Timeline
 
 
 class Note:
-    def __init__(self, time, duration, key, channel=0, velocity=None, release_velocity=None, content=None):
+    def __init__(
+        self,
+        time,
+        duration,
+        key,
+        channel=0,
+        velocity=None,
+        release_velocity=None,
+        content=None,
+    ):
         self.time = time
         self.duration = duration
         self.channel = channel
@@ -37,8 +46,12 @@ class Note:
         duration = DoubleAdapter.from_xml(element.get("duration"))
         key = int(element.get("key"))
         channel = int(element.get("channel")) if element.get("channel") else 0
-        velocity = DoubleAdapter.from_xml(element.get("vel")) if element.get("vel") else None
-        release_velocity = DoubleAdapter.from_xml(element.get("rel")) if element.get("rel") else None
+        velocity = (
+            DoubleAdapter.from_xml(element.get("vel")) if element.get("vel") else None
+        )
+        release_velocity = (
+            DoubleAdapter.from_xml(element.get("rel")) if element.get("rel") else None
+        )
 
         content_elem = element.find("Content")
         content = None

@@ -2,8 +2,11 @@ from lxml import etree as ET
 from classes.parameter import Parameter
 from classes.expressionType import ExpressionType
 
+
 class AutomationTarget:
-    def __init__(self, parameter=None, expression=None, channel=None, key=None, controller=None):
+    def __init__(
+        self, parameter=None, expression=None, channel=None, key=None, controller=None
+    ):
         self.parameter = parameter
         self.expression = expression
         self.channel = channel
@@ -14,11 +17,15 @@ class AutomationTarget:
         target_elem = ET.Element("Target")
         if self.parameter:
             # Ensure parameter is a string or get its ID
-            parameter_id = getattr(self.parameter, 'id', None) or getattr(self.parameter, 'parameterID', None)
+            parameter_id = getattr(self.parameter, "id", None) or getattr(
+                self.parameter, "parameterID", None
+            )
             if parameter_id is not None:
                 target_elem.set("parameter", str(parameter_id))
             else:
-                raise TypeError(f"Expected parameter to be a string or an object with 'id' or 'parameterID', got {type(self.parameter).__name__}")
+                raise TypeError(
+                    f"Expected parameter to be a string or an object with 'id' or 'parameterID', got {type(self.parameter).__name__}"
+                )
 
         if self.expression:
             target_elem.set("expression", self.expression)

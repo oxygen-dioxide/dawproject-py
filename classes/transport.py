@@ -31,7 +31,10 @@ class Transport:
         tempo = RealParameter.from_xml(tempo_elem) if tempo_elem is not None else None
 
         time_signature_elem = element.find("TimeSignature")
-        time_signature = TimeSignatureParameter.from_xml(
-            time_signature_elem) if time_signature_elem is not None else None
+        time_signature = (
+            TimeSignatureParameter.from_xml(time_signature_elem)
+            if time_signature_elem is not None
+            else None
+        )
 
         return cls(tempo, time_signature)

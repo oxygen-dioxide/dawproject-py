@@ -2,9 +2,22 @@ from lxml import etree as ET
 
 
 class MetaData:
-    def __init__(self, title=None, artist=None, album=None, original_artist=None, composer=None, songwriter=None,
-                 producer=None,
-                 arranger=None, year=None, genre=None, copyright=None, website=None, comment=None):
+    def __init__(
+        self,
+        title=None,
+        artist=None,
+        album=None,
+        original_artist=None,
+        composer=None,
+        songwriter=None,
+        producer=None,
+        arranger=None,
+        year=None,
+        genre=None,
+        copyright=None,
+        website=None,
+        comment=None,
+    ):
         self.title = title
         self.artist = artist
         self.album = album
@@ -80,5 +93,18 @@ class MetaData:
         website = element.findtext("Website")
         comment = element.findtext("Comment")
 
-        return cls(title, artist, album, original_artist, composer, songwriter, producer, arranger, year, genre,
-                   copyright, website, comment)
+        return cls(
+            title,
+            artist,
+            album,
+            original_artist,
+            composer,
+            songwriter,
+            producer,
+            arranger,
+            year,
+            genre,
+            copyright,
+            website,
+            comment,
+        )

@@ -5,8 +5,16 @@ from classes.realParameter import RealParameter
 
 
 class Send(Referenceable):
-    def __init__(self, volume=None, pan=None, type=SendType.SendType.POST, destination=None, name=None, color=None,
-                 comment=None):
+    def __init__(
+        self,
+        volume=None,
+        pan=None,
+        type=SendType.SendType.POST,
+        destination=None,
+        name=None,
+        color=None,
+        comment=None,
+    ):
         super().__init__(name, color, comment)
         self.volume = volume
         self.pan = pan
@@ -32,17 +40,26 @@ class Send(Referenceable):
     @classmethod
     def from_xml(cls, element):
         from classes.channel import Channel
+
         instance = super().from_xml(element)
 
         volume_elem = element.find("Volume")
-        instance.volume = RealParameter.from_xml(volume_elem) if volume_elem is not None else None
+        instance.volume = (
+            RealParameter.from_xml(volume_elem) if volume_elem is not None else None
+        )
 
         pan_elem = element.find("Pan")
-        instance.pan = RealParameter.from_xml(pan_elem) if pan_elem is not None else None
+        instance.pan = (
+            RealParameter.from_xml(pan_elem) if pan_elem is not None else None
+        )
 
         instance.type = element.get("type")
 
         destination_id = element.get("destination")
-        instance.destination = Channel.get_channel_by_id(destination_id) if destination_id is not None else None
+        instance.destination = (
+            Channel.get_channel_by_id(destination_id)
+            if destination_id is not None
+            else None
+        )
 
         return instance

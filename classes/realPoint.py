@@ -25,5 +25,3 @@ class RealPoint(Point):
         interpolation = element.get("interpolation")
         instance.interpolation = Interpolation(interpolation) if interpolation else None
         return instance
-
-

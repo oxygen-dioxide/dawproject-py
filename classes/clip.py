@@ -6,9 +6,24 @@ from classes.timeUnit import TimeUnit
 
 
 class Clip(Nameable):
-    def __init__(self, time, duration=None, content_time_unit=None, play_start=None, play_stop=None, loop_start=None,
-                 loop_end=None, fade_time_unit=None, fade_in_time=None, fade_out_time=None, content=None,
-                 reference=None, name=None, color=None, comment=None):
+    def __init__(
+        self,
+        time,
+        duration=None,
+        content_time_unit=None,
+        play_start=None,
+        play_stop=None,
+        loop_start=None,
+        loop_end=None,
+        fade_time_unit=None,
+        fade_in_time=None,
+        fade_out_time=None,
+        content=None,
+        reference=None,
+        name=None,
+        color=None,
+        comment=None,
+    ):
         super().__init__(name, color, comment)
         self.time = time
         self.duration = duration
@@ -71,16 +86,37 @@ class Clip(Nameable):
 
         # Extract Clip-specific attributes
         instance.time = float(element.get("time"))
-        instance.duration = float(element.get("duration")) if element.get("duration") else None
-        instance.content_time_unit = TimeUnit(element.get("contentTimeUnit")) if element.get(
-            "contentTimeUnit") else None
-        instance.play_start = float(element.get("playStart")) if element.get("playStart") else None
-        instance.play_stop = float(element.get("playStop")) if element.get("playStop") else None
-        instance.loop_start = float(element.get("loopStart")) if element.get("loopStart") else None
-        instance.loop_end = float(element.get("loopEnd")) if element.get("loopEnd") else None
-        instance.fade_time_unit = TimeUnit(element.get("fadeTimeUnit")) if element.get("fadeTimeUnit") else None
-        instance.fade_in_time = float(element.get("fadeInTime")) if element.get("fadeInTime") else None
-        instance.fade_out_time = float(element.get("fadeOutTime")) if element.get("fadeOutTime") else None
+        instance.duration = (
+            float(element.get("duration")) if element.get("duration") else None
+        )
+        instance.content_time_unit = (
+            TimeUnit(element.get("contentTimeUnit"))
+            if element.get("contentTimeUnit")
+            else None
+        )
+        instance.play_start = (
+            float(element.get("playStart")) if element.get("playStart") else None
+        )
+        instance.play_stop = (
+            float(element.get("playStop")) if element.get("playStop") else None
+        )
+        instance.loop_start = (
+            float(element.get("loopStart")) if element.get("loopStart") else None
+        )
+        instance.loop_end = (
+            float(element.get("loopEnd")) if element.get("loopEnd") else None
+        )
+        instance.fade_time_unit = (
+            TimeUnit(element.get("fadeTimeUnit"))
+            if element.get("fadeTimeUnit")
+            else None
+        )
+        instance.fade_in_time = (
+            float(element.get("fadeInTime")) if element.get("fadeInTime") else None
+        )
+        instance.fade_out_time = (
+            float(element.get("fadeOutTime")) if element.get("fadeOutTime") else None
+        )
 
         # Handling content and reference
         content_elem = element.find("Timeline")

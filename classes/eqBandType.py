@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class EqBandType(Enum):
     HIGH_PASS = "highPass"
     LOW_PASS = "lowPass"

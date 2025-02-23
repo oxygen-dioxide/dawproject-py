@@ -2,6 +2,7 @@ from lxml import etree as ET
 from classes.referenceable import Referenceable
 from classes.track import Track
 
+
 class Timeline(Referenceable):
     def __init__(self, track=None, time_unit=None, name=None, color=None, comment=None):
         super().__init__(name, color, comment)

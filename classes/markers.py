@@ -2,10 +2,19 @@ from lxml import etree as ET
 from classes.timeline import Timeline
 from classes.marker import Marker
 
+
 class Markers(Timeline):
     XML_TAG = "Markers"
 
-    def __init__(self, markers=None, track=None, time_unit=None, name=None, color=None, comment=None):
+    def __init__(
+        self,
+        markers=None,
+        track=None,
+        time_unit=None,
+        name=None,
+        color=None,
+        comment=None,
+    ):
         super().__init__(track, time_unit, name, color, comment)
         self.markers = markers if markers else []
 
@@ -15,7 +24,9 @@ class Markers(Timeline):
         if self.time_unit:
             markers_elem.set("timeUnit", str(self.time_unit))
         if self.track:
-            markers_elem.set("track", str(self.track.id))  # Assuming track has an id attribute
+            markers_elem.set(
+                "track", str(self.track.id)
+            )  # Assuming track has an id attribute
 
         for marker in self.markers:
             markers_elem.append(marker.to_xml())

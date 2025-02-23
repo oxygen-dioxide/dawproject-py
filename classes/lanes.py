@@ -5,7 +5,15 @@ from classes.timeline import Timeline
 class Lanes(Timeline):
     XML_TAG = "Lanes"
 
-    def __init__(self, lanes=None, track=None, time_unit=None, name=None, color=None, comment=None):
+    def __init__(
+        self,
+        lanes=None,
+        track=None,
+        time_unit=None,
+        name=None,
+        color=None,
+        comment=None,
+    ):
         super().__init__(track, time_unit, name, color, comment)
         self.lanes = lanes if lanes else []
 
@@ -17,7 +25,9 @@ class Lanes(Timeline):
         if self.time_unit:
             lanes_elem.set("timeUnit", str(self.time_unit.value))
         if self.track:
-            lanes_elem.set("track", str(self.track.id))  # Assuming track has an id attribute
+            lanes_elem.set(
+                "track", str(self.track.id)
+            )  # Assuming track has an id attribute
 
         # Append child elements for each lane
         for lane in self.lanes:

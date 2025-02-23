@@ -7,7 +7,9 @@ class Application:
         self.version = version
 
     def to_xml(self):
-        application_elem = ET.Element("Application", name=self.name, version=self.version)
+        application_elem = ET.Element(
+            "Application", name=self.name, version=self.version
+        )
 
         if self.name:
             application_elem.set("name", self.name)

@@ -1,5 +1,6 @@
 from lxml import etree as ET
 
+
 class FileReference:
     def __init__(self, path, external=False):
         if path is None:
@@ -17,5 +18,5 @@ class FileReference:
     def from_xml(cls, element):
         path = element.get("path")
         external = element.get("external")
-        external = external.lower() == 'true' if external else False
+        external = external.lower() == "true" if external else False
         return cls(path, external)

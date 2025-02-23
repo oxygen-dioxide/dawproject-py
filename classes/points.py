@@ -3,10 +3,21 @@ from classes.timeline import Timeline
 from classes.automationTarget import AutomationTarget
 from classes.realPoint import RealPoint
 
+
 class Points(Timeline):
     XML_TAG = "Points"
 
-    def __init__(self, target=None, points=None, unit=None, track=None, time_unit=None, name=None, color=None, comment=None):
+    def __init__(
+        self,
+        target=None,
+        points=None,
+        unit=None,
+        track=None,
+        time_unit=None,
+        name=None,
+        color=None,
+        comment=None,
+    ):
         super().__init__(track, time_unit, name, color, comment)
         self.target = target if target else AutomationTarget()
         self.points = points if points else []
@@ -43,11 +54,22 @@ class Points(Timeline):
         instance = super().from_xml(element)
 
         target_elem = element.find("Target")
-        instance.target = AutomationTarget.from_xml(target_elem) if target_elem is not None else AutomationTarget()
+        instance.target = (
+            AutomationTarget.from_xml(target_elem)
+            if target_elem is not None
+            else AutomationTarget()
+        )
 
         points = []
         for point_elem in element:
-            if point_elem.tag in ["Point", "RealPoint", "EnumPoint", "BoolPoint", "IntegerPoint", "TimeSignaturePoint"]:
+            if point_elem.tag in [
+                "Point",
+                "RealPoint",
+                "EnumPoint",
+                "BoolPoint",
+                "IntegerPoint",
+                "TimeSignaturePoint",
+            ]:
                 point_class = globals().get(point_elem.tag)
                 if point_class:
                     points.append(point_class.from_xml(point_elem))

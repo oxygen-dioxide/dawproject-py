@@ -4,14 +4,19 @@ from classes.boolParameter import BoolParameter
 from classes.eqBandType import EqBandType
 from classes.unit import Unit  # Assuming this is where the Unit enum is defined
 
+
 class EqBand:
-    def __init__(self, freq=None, gain=None, q=None, enabled=None, band_type=None, order=None):
+    def __init__(
+        self, freq=None, gain=None, q=None, enabled=None, band_type=None, order=None
+    ):
         # Ensure freq, gain, and q are RealParameter instances
         self.freq = freq if isinstance(freq, RealParameter) else RealParameter(freq)
         self.gain = gain if isinstance(gain, RealParameter) else RealParameter(gain)
         self.q = q if isinstance(q, RealParameter) else RealParameter(q)
 
-        self.enabled = enabled if isinstance(enabled, BoolParameter) else BoolParameter(enabled)
+        self.enabled = (
+            enabled if isinstance(enabled, BoolParameter) else BoolParameter(enabled)
+        )
         self.band_type = band_type  # Expected to be an instance of EqBandType
         self.order = order  # Expected to be an integer or None
 
@@ -32,7 +37,9 @@ class EqBand:
         q_elem = ET.Element("Q")
         q_elem.set("id", self.q.id)
         q_elem.set("value", str(self.q.value))
-        q_elem.set("unit", Unit.LINEAR.value)  # Assuming Q is unitless but using a suitable enum value
+        q_elem.set(
+            "unit", Unit.LINEAR.value
+        )  # Assuming Q is unitless but using a suitable enum value
 
         # Add these elements to the Band element
         band_elem.append(freq_elem)
@@ -47,7 +54,9 @@ class EqBand:
 
         # Set attributes
         if self.band_type is not None:
-            band_elem.set("type", str(self.band_type.value))  # Assuming EqBandType has a 'value' attribute
+            band_elem.set(
+                "type", str(self.band_type.value)
+            )  # Assuming EqBandType has a 'value' attribute
         if self.order is not None:
             band_elem.set("order", str(self.order))
 
@@ -67,4 +76,6 @@ class EqBand:
         band_type = EqBandType(element.get("type")) if element.get("type") else None
         order = int(element.get("order")) if element.get("order") else None
 
-        return cls(freq=freq, gain=gain, q=q, enabled=enabled, band_type=band_type, order=order)
+        return cls(
+            freq=freq, gain=gain, q=q, enabled=enabled, band_type=band_type, order=order
+        )

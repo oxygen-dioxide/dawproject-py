@@ -2,8 +2,18 @@ from lxml import etree as ET
 from classes.lane import Lane
 from classes.channel import Channel
 
+
 class Track(Lane):
-    def __init__(self, content_type=None, loaded=None, channel=None, tracks=None, name=None, color=None, comment=None):
+    def __init__(
+        self,
+        content_type=None,
+        loaded=None,
+        channel=None,
+        tracks=None,
+        name=None,
+        color=None,
+        comment=None,
+    ):
         super().__init__(name, color, comment)
         self.content_type = content_type if content_type else []
         self.loaded = loaded
@@ -17,7 +27,7 @@ class Track(Lane):
 
         # Set content_type as an attribute
         if self.content_type:
-            content_type_str = ','.join(str(ct.value) for ct in self.content_type)
+            content_type_str = ",".join(str(ct.value) for ct in self.content_type)
             track_elem.set("contentType", content_type_str)
 
         # Set loaded as an attribute, converting to lowercase string for XML
@@ -43,15 +53,17 @@ class Track(Lane):
         # Extract contentType text and split into a list
         content_type_elem = element.find("contentType")
         if content_type_elem is not None and content_type_elem.text:
-            instance.content_type = content_type_elem.text.split(',')
+            instance.content_type = content_type_elem.text.split(",")
 
         # Parse the loaded attribute, converting 'true'/'false' to Boolean
         loaded = element.get("loaded")
-        instance.loaded = loaded.lower() == 'true' if loaded else None
+        instance.loaded = loaded.lower() == "true" if loaded else None
 
         # Initialize channel using Channel's from_xml method if present
         channel_elem = element.find("Channel")
-        instance.channel = Channel.from_xml(channel_elem) if channel_elem is not None else None
+        instance.channel = (
+            Channel.from_xml(channel_elem) if channel_elem is not None else None
+        )
 
         # Recursively parse nested Track elements
         tracks = []

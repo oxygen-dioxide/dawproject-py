@@ -1,6 +1,7 @@
 from lxml import etree as ET
 from classes.device import Device
 
+
 class BuiltInDevice(Device):
     def __init__(self, device_type=None):
         self.device_type = device_type  # This could be one of Equalizer, Compressor, NoiseGate, Limiter
@@ -20,6 +21,7 @@ class BuiltInDevice(Device):
         # Lazy import to avoid circular dependency
         from classes.equalizer import Equalizer
         from classes.compressor import Compressor
+
         # Import NoiseGate and Limiter here if they exist
 
         # Logic to determine the actual device type

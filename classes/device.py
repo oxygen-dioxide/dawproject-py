@@ -7,8 +7,20 @@ from classes.parameter import Parameter
 
 
 class Device(Referenceable):
-    def __init__(self, enabled=None, device_role=None, loaded=True, device_name=None, device_id=None,
-                 device_vendor=None, state=None, automated_parameters=None, name=None, color=None, comment=None):
+    def __init__(
+        self,
+        enabled=None,
+        device_role=None,
+        loaded=True,
+        device_name=None,
+        device_id=None,
+        device_vendor=None,
+        state=None,
+        automated_parameters=None,
+        name=None,
+        color=None,
+        comment=None,
+    ):
         super().__init__(name, color, comment)
         self.enabled = enabled
         self.device_role = device_role
@@ -56,20 +68,24 @@ class Device(Referenceable):
         instance = super().from_xml(element)
 
         enabled_elem = element.find("Enabled")
-        instance.enabled = BoolParameter.from_xml(enabled_elem) if enabled_elem is not None else None
+        instance.enabled = (
+            BoolParameter.from_xml(enabled_elem) if enabled_elem is not None else None
+        )
 
         device_role = element.get("deviceRole")
         instance.device_role = DeviceRole(device_role) if device_role else None
 
         loaded = element.get("loaded")
-        instance.loaded = loaded.lower() == 'true' if loaded else True
+        instance.loaded = loaded.lower() == "true" if loaded else True
 
         instance.device_name = element.get("deviceName")
         instance.device_id = element.get("deviceID")
         instance.device_vendor = element.get("deviceVendor")
 
         state_elem = element.find("State")
-        instance.state = FileReference.from_xml(state_elem) if state_elem is not None else None
+        instance.state = (
+            FileReference.from_xml(state_elem) if state_elem is not None else None
+        )
 
         parameters_elem = element.find("Parameters")
         parameters = []

@@ -3,15 +3,31 @@ from classes.realParameter import RealParameter
 from classes.eqBand import EqBand
 from classes.unit import Unit  # Assuming this is where the Unit enum is defined
 
+
 class Equalizer:
-    def __init__(self, device_name=None, device_role=None, bands=None, input_gain=None, output_gain=None):
+    def __init__(
+        self,
+        device_name=None,
+        device_role=None,
+        bands=None,
+        input_gain=None,
+        output_gain=None,
+    ):
         self.device_name = device_name  # The required deviceName attribute
         self.device_role = device_role  # The required deviceRole attribute
         self.bands = bands if bands is not None else []
 
         # Ensure input_gain and output_gain are RealParameter instances
-        self.input_gain = input_gain if isinstance(input_gain, RealParameter) else RealParameter(input_gain)
-        self.output_gain = output_gain if isinstance(output_gain, RealParameter) else RealParameter(output_gain)
+        self.input_gain = (
+            input_gain
+            if isinstance(input_gain, RealParameter)
+            else RealParameter(input_gain)
+        )
+        self.output_gain = (
+            output_gain
+            if isinstance(output_gain, RealParameter)
+            else RealParameter(output_gain)
+        )
 
     def to_xml(self):
         eq_elem = ET.Element("Equalizer")
@@ -34,13 +50,17 @@ class Equalizer:
 
         # Add InputGain as a child element with the unit attribute
         input_gain_elem = ET.Element("InputGain")
-        input_gain_elem.set("unit", Unit.DECIBEL.value)  # Assuming the unit for InputGain is in decibels
+        input_gain_elem.set(
+            "unit", Unit.DECIBEL.value
+        )  # Assuming the unit for InputGain is in decibels
         input_gain_elem.extend(self.input_gain.to_xml().getchildren())
         eq_elem.append(input_gain_elem)
 
         # Add OutputGain as a child element with the unit attribute
         output_gain_elem = ET.Element("OutputGain")
-        output_gain_elem.set("unit", Unit.DECIBEL.value)  # Assuming the unit for OutputGain is in decibels
+        output_gain_elem.set(
+            "unit", Unit.DECIBEL.value
+        )  # Assuming the unit for OutputGain is in decibels
         output_gain_elem.extend(self.output_gain.to_xml().getchildren())
         eq_elem.append(output_gain_elem)
 
@@ -67,5 +87,10 @@ class Equalizer:
         output_gain_elem = element.find("OutputGain")
         output_gain = RealParameter.from_xml(output_gain_elem.find("RealParameter"))
 
-        return cls(device_name=device_name, device_role=device_role, bands=bands, input_gain=input_gain,
-                   output_gain=output_gain)
+        return cls(
+            device_name=device_name,
+            device_role=device_role,
+            bands=bands,
+            input_gain=input_gain,
+            output_gain=output_gain,
+        )

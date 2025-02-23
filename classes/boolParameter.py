@@ -1,7 +1,10 @@
 from classes.parameter import Parameter
 
+
 class BoolParameter(Parameter):
-    def __init__(self, value=None, parameter_id=None, name=None, color=None, comment=None):
+    def __init__(
+        self, value=None, parameter_id=None, name=None, color=None, comment=None
+    ):
         super().__init__(parameter_id, name, color, comment)
         self.value = value
 
@@ -17,5 +20,5 @@ class BoolParameter(Parameter):
     def from_xml(cls, element):
         instance = super().from_xml(element)
         value = element.get("value")
-        instance.value = value.lower() == 'true' if value else None
+        instance.value = value.lower() == "true" if value else None
         return instance

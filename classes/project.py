@@ -5,10 +5,19 @@ from classes.lane import Lane
 from classes.arrangement import Arrangement
 from classes.scene import Scene
 
+
 class Project:
     CURRENT_VERSION = "1.0"
 
-    def __init__(self, version=None, application=None, transport=None, structure=None, arrangement=None, scenes=None):
+    def __init__(
+        self,
+        version=None,
+        application=None,
+        transport=None,
+        structure=None,
+        arrangement=None,
+        scenes=None,
+    ):
         self.version = version if version else self.CURRENT_VERSION
         self.application = application if application else Application()
         self.transport = transport
@@ -55,15 +64,29 @@ class Project:
         version = element.get("version", cls.CURRENT_VERSION)
         application = Application.from_xml(element.find("Application"))
         transport_elem = element.find("Transport")
-        transport = Transport.from_xml(transport_elem) if transport_elem is not None else None
+        transport = (
+            Transport.from_xml(transport_elem) if transport_elem is not None else None
+        )
 
         structure_elem = element.find("Structure")
-        structure = [Lane.from_xml(lane) for lane in structure_elem] if structure_elem is not None else []
+        structure = (
+            [Lane.from_xml(lane) for lane in structure_elem]
+            if structure_elem is not None
+            else []
+        )
 
         arrangement_elem = element.find("Arrangement")
-        arrangement = Arrangement.from_xml(arrangement_elem) if arrangement_elem is not None else None
+        arrangement = (
+            Arrangement.from_xml(arrangement_elem)
+            if arrangement_elem is not None
+            else None
+        )
 
         scenes_elem = element.find("Scenes")
-        scenes = [Scene.from_xml(scene) for scene in scenes_elem] if scenes_elem is not None else []
+        scenes = (
+            [Scene.from_xml(scene) for scene in scenes_elem]
+            if scenes_elem is not None
+            else []
+        )
 
         return cls(version, application, transport, structure, arrangement, scenes)

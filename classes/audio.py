@@ -2,8 +2,19 @@ from classes.mediaFile import MediaFile
 from lxml import etree as ET
 from classes.fileReference import FileReference
 from classes.timeUnit import TimeUnit
+
+
 class Audio(MediaFile):
-    def __init__(self, sample_rate, channels, duration, algorithm=None, file=None, name=None, time_unit="seconds"):
+    def __init__(
+        self,
+        sample_rate,
+        channels,
+        duration,
+        algorithm=None,
+        file=None,
+        name=None,
+        time_unit="seconds",
+    ):
         super().__init__(file=file, duration=duration, name=name)
         self.sample_rate = sample_rate
         self.channels = channels
@@ -28,9 +39,13 @@ class Audio(MediaFile):
             audio_elem.set("algorithm", self.algorithm)
         # Convert time_unit to a string if it's an instance of a class
         if isinstance(self.time_unit, TimeUnit):
-            audio_elem.set("timeUnit", str(self.time_unit.value))  # Assuming 'value' is the correct attribute
+            audio_elem.set(
+                "timeUnit", str(self.time_unit.value)
+            )  # Assuming 'value' is the correct attribute
         else:
-            audio_elem.set("timeUnit", str(self.time_unit))  # Directly use if it's already a string
+            audio_elem.set(
+                "timeUnit", str(self.time_unit)
+            )  # Directly use if it's already a string
 
         return audio_elem
 
@@ -40,7 +55,18 @@ class Audio(MediaFile):
         channels = int(element.get("channels"))
         algorithm = element.get("algorithm")
         file_elem = element.find("File")
-        file = FileReference.from_xml(file_elem) if file_elem is not None else FileReference()
+        file = (
+            FileReference.from_xml(file_elem)
+            if file_elem is not None
+            else FileReference()
+        )
         duration = float(element.get("duration"))
         time_unit = element.get("timeUnit", "seconds")
-        return cls(sample_rate, channels, duration, algorithm=algorithm, file=file, time_unit=time_unit)
+        return cls(
+            sample_rate,
+            channels,
+            duration,
+            algorithm=algorithm,
+            file=file,
+            time_unit=time_unit,
+        )

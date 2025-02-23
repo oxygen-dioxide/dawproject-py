@@ -7,9 +7,9 @@ class DoubleAdapter:
         """
         if value is None:
             return None
-        if value == float('inf'):
+        if value == float("inf"):
             return "inf"
-        elif value == float('-inf'):
+        elif value == float("-inf"):
             return "-inf"
         else:
             return f"{value:.6f}"
@@ -23,8 +23,8 @@ class DoubleAdapter:
         if value is None or value in ("null", ""):
             return None
         if value == "inf":
-            return float('inf')
+            return float("inf")
         elif value == "-inf":
-            return float('-inf')
+            return float("-inf")
         else:
             return float(value)

@@ -6,7 +6,15 @@ from classes.note import Note
 class Notes(Timeline):
     XML_TAG = "Notes"
 
-    def __init__(self, notes=None, track=None, time_unit=None, name=None, color=None, comment=None):
+    def __init__(
+        self,
+        notes=None,
+        track=None,
+        time_unit=None,
+        name=None,
+        color=None,
+        comment=None,
+    ):
         super().__init__(track, time_unit, name, color, comment)
         self.notes = notes if notes else []
 
@@ -18,7 +26,9 @@ class Notes(Timeline):
         if self.time_unit:
             notes_elem.set("timeUnit", str(self.time_unit))
         if self.track:
-            notes_elem.set("track", str(self.track.id))  # Assuming track has an id attribute
+            notes_elem.set(
+                "track", str(self.track.id)
+            )  # Assuming track has an id attribute
 
         # Append child elements for each note
         for note in self.notes:

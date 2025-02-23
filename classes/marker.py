@@ -1,6 +1,7 @@
 from lxml import etree as ET
 from classes.nameable import Nameable
 
+
 class Marker(Nameable):
     def __init__(self, time, name=None, color=None, comment=None):
         super().__init__(name, color, comment)
