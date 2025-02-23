@@ -1,4 +1,3 @@
-from lxml import etree as ET
 from classes.point import Point
 from classes.doubleAdapter import DoubleAdapter
 from classes.interpolation import Interpolation

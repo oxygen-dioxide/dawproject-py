@@ -1,4 +1,3 @@
-from lxml import etree as ET
 from classes.parameter import Parameter
 from classes.doubleAdapter import DoubleAdapter
 from classes.unit import Unit

@@ -1,4 +1,3 @@
-from collections import namedtuple
 from typing import Set
 
 # Assuming the following classes and enums are already defined in your project

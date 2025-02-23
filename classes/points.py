@@ -1,7 +1,6 @@
 from lxml import etree as ET
 from classes.timeline import Timeline
 from classes.automationTarget import AutomationTarget
-from classes.realPoint import RealPoint
 
 
 class Points(Timeline):

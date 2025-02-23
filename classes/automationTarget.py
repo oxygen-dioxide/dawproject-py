@@ -1,6 +1,4 @@
 from lxml import etree as ET
-from classes.parameter import Parameter
-from classes.expressionType import ExpressionType
 
 
 class AutomationTarget:

@@ -1,6 +1,4 @@
-from lxml import etree as ET
 from classes.referenceable import Referenceable
-from classes.track import Track
 
 
 class Timeline(Referenceable):

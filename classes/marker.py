@@ -1,4 +1,3 @@
-from lxml import etree as ET
 from classes.nameable import Nameable
 
 
