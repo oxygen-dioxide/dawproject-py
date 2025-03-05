@@ -85,6 +85,11 @@ DawProject.save_xml(project, "audio_project.dawproject")
 ```
 
 ---
+##  🏗 Examples
+
+An examples folder is included in this repository, demonstrating how to use DAWProject-Py in real-world scenarios. One example shows how to use the Tonn API to obtain multitrack mix settings for a DAWProject file.
+
+___
 
 ## 📜 DAWProject Format
 
