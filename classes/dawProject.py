@@ -114,7 +114,7 @@ class DawProject:
             project_xml = DawProject.to_xml(project)
 
             # Load the XML Schema (.xsd file)
-            with open("./Project.xsd", "r") as schema_file:
+            with open("../Project.xsd", "r") as schema_file:
                 schema_doc = etree.parse(schema_file)
                 schema = etree.XMLSchema(schema_doc)
 

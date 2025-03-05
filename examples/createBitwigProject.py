@@ -42,8 +42,8 @@ def save_test_project(project, name, configurer=None):
     if configurer:
         configurer(metadata, embedded_files)
 
-    DawProject.save(project, metadata, embedded_files, f"target/{name}.dawproject")
-    DawProject.save_xml(project, f"target/{name}.xml")
+    DawProject.save(project, metadata, embedded_files, f"../target/{name}.dawproject")
+    DawProject.save_xml(project, f"../target/{name}.xml")
     DawProject.validate(project)
 
 
